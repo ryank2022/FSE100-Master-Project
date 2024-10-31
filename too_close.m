@@ -3,7 +3,7 @@
 function [output] = too_close(brick, sensorPort)
     distance = brick.UltrasonicDist(sensorPort);
 
-    if distance < 10
+    if distance < 40
         output = true;
     else
         output = false;

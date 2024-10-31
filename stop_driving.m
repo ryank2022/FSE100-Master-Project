@@ -1,7 +1,8 @@
-% Stop driving only
+% Stops the car with out braking.
 
-function stop_driving(brick, leftWheelPort,rightWheelPort)
-    brick.StopMotor(leftWheelPort, 'Coast');
-    brick.StopMotor(rightWheelPort, 'Coast');
+function stop_driving(brick)
+    brick.StopAllMotors('Coast');
+
+    pause(1);
 end
     

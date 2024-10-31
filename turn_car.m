@@ -33,5 +33,5 @@ function turn_car(brick, direction, gyroPort, leftWheelPort, rightWheelPort)
         stop_driving(brick,leftWheelPort,rightWheelPort);
     end
     end
-
+    pause(1);
 end
