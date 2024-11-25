@@ -1,7 +1,7 @@
 % Stops the car with out braking.
 
 function stop_driving(brick)
-    brick.StopAllMotors('Coast');
+    brick.StopAllMotors();
 
     pause(1);
 end

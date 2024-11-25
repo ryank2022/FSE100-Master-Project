@@ -22,7 +22,7 @@ global ultraPort;
 ultraPort = 4;
 
 global defaultSpeed;
-defaultSpeed = 55;
+defaultSpeed = 65;
 
 % Connects the keypress and release functions
 set(fig,'WindowKeyPressFcn',@keyPressFun);
@@ -73,21 +73,19 @@ function autoNav()
             disp("No wall");
 
             stop_driving(brick);
-            pause(2);
+            pause(1);
 
             % turn right if there is no wall on the right
-            increment_drive(brick, leftWheelPort, rightWheelPort, 210, defaultSpeed);
+            %increment_drive(brick, leftWheelPort, rightWheelPort, 360, defaultSpeed);
 
             %turn_car(brick, 'right', 's', leftWheelPort, rightWheelPort);
-
             disp("turning.");
-            MoveMotorAngleRel(brick, leftWheelPort, defaultSpeed, -340, "Brake");
-            MoveMotorAngleRel(brick, rightWheelPort, defaultSpeed, 340, "Brake");
+            turn_car(brick, "right", gyroPort, leftWheelPort, rightWheelPort);
             pause(4);
             
             disp("going");
             drive_forward(brick, leftWheelPort, rightWheelPort, defaultSpeed);
-            pause(2.76);
+            pause(3);
         
         end
         
@@ -101,14 +99,11 @@ function autoNav()
 
             stop_driving(brick);
             
-            increment_drive(brick, leftWheelPort, rightWheelPort, -450, defaultSpeed);
+            increment_drive(brick, leftWheelPort, rightWheelPort, -500, defaultSpeed);
             %turn_car(brick, 'left', gyroPort, leftWheelPort, rightWheelPort);
-            pause(1);
-
-            % turn_car(brick, "left", gyroPort, leftWheelPort, rightWheelPort);
-            MoveMotorAngleRel(brick, leftWheelPort, defaultSpeed, 330, "Brake");
-            MoveMotorAngleRel(brick, rightWheelPort, defaultSpeed, -330, "Brake");
-            pause(4);
+            
+            %turn_car(brick, "left", gyroPort, leftWheelPort, rightWheelPort);
+            movem
         end
         
         %^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^%
@@ -119,7 +114,7 @@ function autoNav()
             disp("saw red");
             stop_driving(brick);
             pause(1.5);
-            increment_drive(brick,leftWheelPort,rightWheelPort,500, defaultSpeed);
+            increment_drive(brick,leftWheelPort,rightWheelPort,360, defaultSpeed);
         end
         
         if colorState == BLUE
@@ -188,6 +183,10 @@ function keyPressFun(source,eventdata)
     end
     if strcmpi(keyPressed, "j") %Turn left
         steer_drive(brick, "left", leftWheelPort, rightWheelPort, defaultSpeed/2);
+    end
+
+    if strcmpi(keyPressed, "leftbracket") %Turn left
+        turn_car(brick, "right", gyroPort, leftWheelPort, rightWheelPort);
     end
 
     % Start self-driving

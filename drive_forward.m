@@ -2,6 +2,6 @@
 
 function drive_forward(brick, leftWheelPort,rightWheelPort, speed)
     brick.MoveMotor(leftWheelPort, speed);
-    brick.MoveMotor(rightWheelPort, speed);
+    brick.MoveMotor(rightWheelPort, speed-2);
 end
     
